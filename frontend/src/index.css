@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+.input{
+  @apply block text-sm font-medium text-gray-700;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.between-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.between-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
