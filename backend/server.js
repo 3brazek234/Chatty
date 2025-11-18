@@ -9,14 +9,15 @@ const server = http.createServer(app);
 
 dotenv.config();
 connectDB();
-
+app.use(express.json()); // 🚨🚨 انقل دي هنا (أول middleware)
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(
   cors({
     origin: process.env.CLIENT_ORIGIN || "http://localhost:3000",
     credentials: true,
   })
 );
-app.use(express.json());
+
 
 app.use("/api", authRoutes);
 server.listen(process.env.PORT || 3001, () => {

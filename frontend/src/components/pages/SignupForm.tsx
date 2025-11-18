@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signUp } from "../../services/auth";
 import { toast } from "sonner";
 
-function SignupForm(onSwitch: AuthChildProps) {
+function SignupForm({ onSwitch }: AuthChildProps) {
   const {
     register,
     handleSubmit,
@@ -20,8 +20,15 @@ function SignupForm(onSwitch: AuthChildProps) {
     },
   });
 
-  const onSubmit = (data: RegisterFormData) => {
-    signUp(data);
+  const onSubmit = async (data: RegisterFormData) => {
+    const res = await signUp(data);
+    if (res.success) {
+      toast.success("User registered successfully! You can now login");
+      onSwitch();
+    }
+    if (res.message === "User is existing, try Login") {
+      onSwitch();
+    }
   };
   return (
     <>
@@ -72,18 +79,18 @@ function SignupForm(onSwitch: AuthChildProps) {
             <p className="text-red-500">{errors.password.message}</p>
           )}
         </div>
-       
+
         <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         >
           Register
         </button>
-         <div className="center gap-2.5 mt-3">
+        <div className="center gap-2.5 mt-3">
           <p>Already have an account?</p>
           <span
-            onClick={() => onSwitch}
-            className="text-blue-500 hover:underline"
+            onClick={onSwitch}
+            className="text-blue-500 hover:underline cursor-pointer"
           >
             Login
           </span>

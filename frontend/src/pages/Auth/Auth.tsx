@@ -1,7 +1,7 @@
 import { Mail } from "lucide-react";
 import { useState } from "react";
-import LoginForm from "../../components/pages/loginForm";
 import SignupForm from "../../components/pages/SignupForm";
+import LoginForm from "../../components/pages/LoginForm";
 export default function Auth() {
   const [login, setLogin] = useState<Boolean>(false);
   return (
@@ -24,11 +24,11 @@ export default function Auth() {
       <div className="w-full md:w-6/12 center">
         {login ? (
           <div className="w-full md:w-[400px] border border-gray-300 p-8 rounded shadow-xl">
-            <LoginForm onSwitch={() => setLogin(true)} />
+            <LoginForm onSwitch={() => setLogin(!login)} />
           </div>
         ) : (
           <div className="w-full md:w-[400px] border border-gray-300 p-8 rounded shadow-xl shadow-sky-300 hover:shadow-sky-500 transition-all duration-300">
-            <SignupForm onSwitch={() => setLogin(false)} />
+            <SignupForm onSwitch={() => setLogin(!login)} />
           </div>
         )}
       </div>

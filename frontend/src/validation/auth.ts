@@ -16,3 +16,9 @@ export const registerSchema = z.object({
   password: z.string().min(6, { message: "Password is too short" }),
 });
 export type RegisterFormData = z.infer<typeof registerSchema>;
+
+export const loginSchema = z.object({
+  email: z.email({ message: "Invalid email address" }),
+  password: z.string().min(6, { message: "Password is too short" }),
+});
+export type LoginFormData = z.infer<typeof loginSchema>;
